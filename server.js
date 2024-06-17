@@ -46,7 +46,7 @@ app.post('/api/save-to-csv', (req, res) => {
 
 const httpsOptions = {
   key: fs.readFileSync(path.join(__dirname, 'nginx-selfsigned.key')),
-  cert: fs.readFileSync(path.join(__dirname, 'nginx-selfsigned.cert')),
+  cert: fs.readFileSync(path.join(__dirname, 'nginx-selfsigned.crt')),
 };
 
 https.createServer(httpsOptions, app).listen(port, () => {
