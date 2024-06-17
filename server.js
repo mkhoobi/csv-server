@@ -10,7 +10,7 @@ const port = 4000;
 app.use(bodyParser.json());
 
 app.use(cors({
-    origin: 'https://134.130.11.91',
+    origin: '*',
   }));
 
 const csvWriter = createObjectCsvWriter({
