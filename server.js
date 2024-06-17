@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const { createObjectCsvWriter } = require('csv-writer');
 const cors = require('cors');
+const https = require('https');
+const path = require('path');
 
 const app = express();
 const port = 4000;
@@ -42,6 +44,11 @@ app.post('/api/save-to-csv', (req, res) => {
     });
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+const httpsOptions = {
+  key: fs.readFileSync(path.join(__dirname, 'nginx-selfsigned.key')),
+  cert: fs.readFileSync(path.join(__dirname, 'nginx-selfsigned.cert')),
+};
+
+https.createServer(httpsOptions, app).listen(port, () => {
+  console.log(`Server is running on https://134.130.11.91:${port}`);
 });
